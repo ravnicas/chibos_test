@@ -25,12 +25,15 @@ enum layers {
 	PROG,
 	NAV,
     FUNC,
-    
 };
 
 enum {
     TD_ESC = 0,
+};
 
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_GRV, KC_ESC),
 };
 
 
@@ -40,7 +43,7 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {KC_TAB,        KC_Q, 		KC_W, 	  KC_E, 		KC_R, 		KC_T, 		KC_END,		          KC_HOME, 	    KC_Y,		KC_U,		KC_I,		KC_O,		KC_P,		KC_BSPACE},
     {KC_CAPS,       KC_A, 		KC_S, 	  KC_D, 		KC_F, 		KC_G, 		KC_PGUP,	          KC_END,		KC_H,		KC_J,		KC_K,		KC_L,		KC_O,		KC_ENTER},
     {KC_LSHIFT,     KC_Z,		KC_X, 	  KC_C, 		KC_V, 		KC_B, 		LT(FUNC, KC_PGDOWN),  KC_INSERT,	KC_N,		KC_M,		KC_COMMA,	KC_DOT,		KC_SLASH,	KC_RSHIFT},
-    {KC_LCTRL,      KC_LWIN,	KC_LALT,  _______, 		KC_BSPACE, 	KC_SPACE, 	TO(NUM),	          TO(PROG), 	KC_ENTER,	MO(NAV),	_______,	_______,	KC_RWIN,	KC_RCTRL}},
+    {KC_LCTRL,      KC_LWIN,	KC_LALT,  _______, 		KC_BSPACE, 	KC_SPACE, 	TO(NUM),	          TO(PROG), 	KC_ENTER,	MO(NAV),	OSL(NAV),	_______,	KC_RWIN,	KC_RCTRL}},
 
 [NUM] = {
 	{_______,	_______,	_______,	_______,	_______,	_______, 	_______,	_______,	_______,	_______,	KC_KP_SLASH,	 KC_KP_ASTERISK,	KC_KP_MINUS,   _______},
@@ -98,9 +101,3 @@ uint32_t layer_state_set_user(uint32_t state){
 
     return state;
 }
-
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_GRV, KC_ESC),
-
-};
